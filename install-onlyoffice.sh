@@ -18,7 +18,7 @@ main() {
 
     # clean build env in case a previous build has failed
     rm -rf "$BUILDS_DIR"
-    
+
     mkdir -p "$CONF_DIR"
 
     load_props
@@ -48,45 +48,45 @@ main() {
             selected_versions+=("$version")
         fi
     done
-    
+
 
     for version in "${selected_versions[@]}"; do
         case $version in
-            v1)  
+            v1)
                 set_prop oldest_needed_version v1; install_old_version v1 4f370beb
                 # We delete 'help' from previous versions as they are useless and take up storage
                 rm -rf "$OO_DIR/v1/web-apps/apps/documenteditor/main/resources/help"
-                rm -rf "$OO_DIR/v1/web-apps/apps/presentationeditor/main/resources/help" 
+                rm -rf "$OO_DIR/v1/web-apps/apps/presentationeditor/main/resources/help"
                 rm -rf "$OO_DIR/v1/web-apps/apps/spreadsheeteditor/main/resources/help"
                 ;;
-            v2b) 
+            v2b)
                 install_old_version v2b d9da72fd
                 rm -rf "$OO_DIR/v2b/web-apps/apps/documenteditor/main/resources/help"
-                rm -rf "$OO_DIR/v2b/web-apps/apps/presentationeditor/main/resources/help" 
+                rm -rf "$OO_DIR/v2b/web-apps/apps/presentationeditor/main/resources/help"
                 rm -rf "$OO_DIR/v2b/web-apps/apps/spreadsheeteditor/main/resources/help"
                 ;;
-            v4)  
+            v4)
                 install_old_version v4 6ebc6938
                 rm -rf "$OO_DIR/v4/web-apps/apps/documenteditor/main/resources/help"
-                rm -rf "$OO_DIR/v4/web-apps/apps/presentationeditor/main/resources/help" 
+                rm -rf "$OO_DIR/v4/web-apps/apps/presentationeditor/main/resources/help"
                 rm -rf "$OO_DIR/v4/web-apps/apps/spreadsheeteditor/main/resources/help"
                 ;;
-            v5)  
-                install_old_version v5 88a356f0 
+            v5)
+                install_old_version v5 88a356f0
                 rm -rf "$OO_DIR/v5/web-apps/apps/documenteditor/main/resources/help"
-                rm -rf "$OO_DIR/v5/web-apps/apps/presentationeditor/main/resources/help" 
+                rm -rf "$OO_DIR/v5/web-apps/apps/presentationeditor/main/resources/help"
                 rm -rf "$OO_DIR/v5/web-apps/apps/spreadsheeteditor/main/resources/help"
                 ;;
-            v6)  
+            v6)
                 install_old_version v6 abd8a309
                 rm -rf "$OO_DIR/v6/web-apps/apps/documenteditor/main/resources/help"
-                rm -rf "$OO_DIR/v6/web-apps/apps/presentationeditor/main/resources/help" 
+                rm -rf "$OO_DIR/v6/web-apps/apps/presentationeditor/main/resources/help"
                 rm -rf "$OO_DIR/v6/web-apps/apps/spreadsheeteditor/main/resources/help"
                 ;;
-            v7)  
+            v7)
                 install_version v7 v7.3.3.60+11 1e65be6dc87d97e82b4972f303956e5397b34d637ca80a4239c48e49ab829ee5afc8f5b1680b2fb14230d63ff872ec5f9b562bb6c3f1811316b68f8b436f7ee6
                 rm -rf "$OO_DIR/v7/web-apps/apps/documenteditor/main/resources/help"
-                rm -rf "$OO_DIR/v7/web-apps/apps/presentationeditor/main/resources/help" 
+                rm -rf "$OO_DIR/v7/web-apps/apps/presentationeditor/main/resources/help"
                 rm -rf "$OO_DIR/v7/web-apps/apps/spreadsheeteditor/main/resources/help"
                 rm -rf "$OO_DIR/v7/web-apps/apps/common/main/resources/help/"
                 # From all the older versions only v7 has 'dictionaries', we remove it for the same reasons
@@ -99,7 +99,7 @@ main() {
                 rm -rf "$OO_DIR/v8/web-apps/apps/common/main/resources/help/"
                 ;;
             v9)  install_version v9 v9.2.0.119+3 e18b76c2f2e3021840e716b59049752d98b30790926af187302533d9851fe5be0ff3be402751dd33664241409f4638824f5c7dbab63b37695099194765b0542a ;;
-            x2t) install_x2t v7.3+1 ab0c05b0e4c81071acea83f0c6a8e75f5870c360ec4abc4af09105dd9b52264af9711ec0b7020e87095193ac9b6e20305e446f2321a541f743626a598e5318c1 ;;
+            x2t) install_x2t v8.3.0+0 6fedec269452fd45d2fc7e1a865319b39d7fd58b9a3c4873b0246f67e3846392c7cbbc03b5b4322707ca2f7b632d04b37af8276b980980d87d993923ee164774 ;;
             *)
                 echo "Unknown version: $version"
                 exit 1
@@ -346,7 +346,7 @@ install_x2t() {
         ensure_command_available curl
         ensure_command_available sha512sum
         ensure_command_available unzip
-        curl "https://github.com/cryptpad/onlyoffice-x2t-wasm/releases/download/$VERSION/x2t.zip" --location --output x2t.zip
+        curl "https://github.com/Max-7/onlyoffice-x2t-wasm/releases/download/$VERSION/x2t.zip" --location --output x2t.zip
         echo "$HASH x2t.zip" >x2t.zip.sha512
         if ! sha512sum -c x2t.zip.sha512; then
             echo "x2t.zip does not match expected checksum"
