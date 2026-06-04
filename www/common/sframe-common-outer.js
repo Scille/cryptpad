@@ -2126,7 +2126,7 @@ define([
                         cfg.integrationUtils.onHasUnsavedChanges(obj, cb);
                     }
                 });
-                sframeChan.on('Q_INTEGRATION_ERROR', function (obj) {
+                sframeChan.on('EV_INTEGRATION_ERROR', function (obj) {
                     if (cfg.integrationUtils && cfg.integrationUtils.onError) {
                         cfg.integrationUtils.onError(obj);
                     }
