@@ -1795,7 +1795,7 @@ define([
                     UnsafeObject.$iframe = $('<iframe>', {
                         id: 'sbox-unsafe-iframe',
                         allow: 'clipboard-write'
-                    }).appendTo($('body')).hide();
+                    }).appendTo($('body'));
                     UnsafeObject.modal = UnsafeIframe.create(config);
                 }
                 UnsafeObject.modal.refresh(cfg, function (data) {
